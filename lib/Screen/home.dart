@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather/models/weather.dart';
 import 'package:weather/services/weather_services.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weather/secret.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   //* api key
 
-  final _weatherService = WeatherServices("19413fc8be5c2a22742b4974b56fcb8b");
+  final _weatherService = WeatherServices(openWeatherApiKey);
   Weather? _weather;
 
   //* fetch weather
