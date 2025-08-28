@@ -29,27 +29,44 @@ class WeatherServices {
   }
 
   //* Permission
+
   Future<String> getCurrentCity() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
 
-    //* Get Location
-
     Position position = await Geolocator.getCurrentPosition(
       locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
     );
-
-    //* Convert Location into list of placemark Objects
 
     List<Placemark> placemark = await placemarkFromCoordinates(
       position.latitude,
       position.longitude,
     );
 
-    //* Extract City Name from the first placemark
-    String? city = placemark[0].locality;
-    return city ?? "";
+    String? locality = placemark[0].locality;
+    String? subArea = placemark[0].subAdministrativeArea;
+    String? country = placemark[0].country;
+
+    print('Trying locality: $locality');
+
+    try {
+      await getWeather(locality ?? "");
+      return locality ?? "";
+    } catch (e) {
+      if (e.toString().contains("city not found")) {
+        print('Fallback to subAdministrativeArea: $subArea');
+        try {
+          await getWeather(subArea ?? "");
+          return subArea ?? "";
+        } catch (e) {
+          print('Fallback to country: $country');
+          return country ?? "";
+        }
+      } else {
+        rethrow;
+      }
+    }
   }
 }

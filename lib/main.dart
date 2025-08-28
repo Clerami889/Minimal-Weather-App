@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather/Screen/home.dart';
 
-void main() async {
+void main() {
   runApp(
     MaterialApp(
       home: HomeScreen(),
