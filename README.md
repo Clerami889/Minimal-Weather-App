@@ -23,7 +23,7 @@ A lightweight, elegant Flutter application designed to fetch and display real-ti
 ## 🛠️ Tech Stack & Architecture
 
 * **Framework:** [Flutter](https://flutter.dev/) (Dart)
-* 
+  
 * **API Service:** [OpenWeather REST API](https://openweathermap.org/api)
 
 * **HTTP Client:** `http` package for asynchronous network requests
@@ -35,5 +35,5 @@ A lightweight, elegant Flutter application designed to fetch and display real-ti
 
 ## 📸 Screenshots
 
-[image.jpeg]Image
+![App Preview](image.jpeg)
 
